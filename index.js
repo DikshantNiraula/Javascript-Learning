@@ -1,5 +1,9 @@
 import arrowFunction from "./arrowFunction.js";
+import Product from "./constructor.js";
 
-console.log(arrowFunction(2, 4));
+let newProduct = new Product("Blue Pepe Jeans", 5000, "NewPepe");
+console.log(newProduct.getPrice()); //returns price through a method in Product
 
-console.log("Working Fine!!");
+// console.log(arrowFunction(2, 4));
+
+// console.log("Working Fine!!");
