@@ -2,11 +2,13 @@
 // import Product from "./constructor.js";
 // import arrayDataList from "./arraypush.js";
 import squaredArray from "./map.js";
-
+import { Product, Product1, Product2 } from "./checkingTypeOfFuncandClass.js";
 // import arrayPopDataList from "./arraypop.js";
 
+console.log(typeof Product2);
+
 //for Mapping array and getting square
-console.log(squaredArray);
+// console.log(squaredArray);
 // Output: (9) [1, 4, 9, 16, 25, 36, 49, 64, 81]
 
 //for Array Pop
