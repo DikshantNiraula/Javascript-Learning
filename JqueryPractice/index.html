@@ -141,6 +141,8 @@
                 <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">
                     Blog Posts
                 </h2>
+                  <p class="text-bold float-right" ><b> Count:</b> <span id="count" class="text-green-600 font-bold"></span></p><br>
+                <br>
 
                 <div class="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8" id="posts" class="posts">
 
@@ -198,7 +200,9 @@
             url: "https://jsonplaceholder.typicode.com/posts",
             data: {},
             success: function(response) {
+                $("#count").html(response.length);
                 response.forEach(function(res) {
+
                     $("#posts").append(
 
                         `
@@ -238,9 +242,8 @@
 
     // Delete an Item
     $('#posts').on('click', '.deletePost', function() {
-        console.log('delete clicked')
-            // e.preventDefault();
-            // document.getElementById('authentication-modal').style.display = "none";
+        // e.preventDefault();
+        // document.getElementById('authentication-modal').style.display = "none";
         let id = $(this).data('id');
         if (!confirm("Do you want to delete")) {
             return false;
@@ -253,8 +256,8 @@
                 // $('.loading').show();
             },
             success: function(data) {
-                console.log(data)
                 $("#postitem" + id).remove();
+                $("#count").text($("#count").text() - 1);
 
             }
         })
