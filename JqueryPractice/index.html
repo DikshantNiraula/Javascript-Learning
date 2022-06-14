@@ -279,6 +279,13 @@
             $('#authentication-modal').hide();
         }
     });
+
+    $(document).click(function(e) {
+        if ($(e.target).is('#authentication-modal')) {
+            $('#authentication-modal').fadeOut(300);
+        }
+
+    });
 </script>
 
 </html>
