@@ -157,9 +157,10 @@
           </button>
           <div class="py-6 px-6 lg:px-8">
               <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Edit Post</h3>
-              <form class="space-y-6" action="#">
+              <form class="space-y-6" id="editForm">
+                <input type="hidden" name="postid" id="postid">
                   <div>
-                      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
+                      <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
                       <input type="text" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter Title" required>
                   </div>
                   <div>
@@ -167,7 +168,7 @@
                       <input type="text" name="body" id="body" placeholder="Enter Body" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                   </div>
                  
-                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
+                    <button type="submit" id="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
                        <a></a>
                                 </form>
                     </div>
@@ -204,7 +205,9 @@
             <div class="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                 <img src="https://picsum.photos/id/` + res.id + `/300/300" alt="Olive drab green insulated bottle with flared screw lid and flat top." class="w-full h-full object-center object-cover group-hover:opacity-75">
             </div>
-            <h3 class="mt-4 text-sm text-gray-700 text-bold font-semibold">` + res.title + `</h3> 
+            <h3 class="mt-4 text-md text-gray-900 text-bold font-bold" id="posttitle` + res.id + `">` + res.title + `</h3> 
+            <h3 class="mt-4 text-sm text-gray-700 text-bold font-normal" id="postbody` + res.id + `">` + res.body + `</h3> 
+              
                 <p class="mt-1 text-lg font-medium text-gray-900"> Rs. ` + Math.floor((Math.random() * 1000) + 100) + `</p>
             </a> `);
                 });
@@ -226,6 +229,35 @@
                 // $('.loading').hide();
                 $('#title').val(data.title);
                 $('#body').val(data.body);
+                $('#postid').val(data.id);
+
+            }
+        })
+    });
+
+
+    //Edit form Submit
+    $("#editForm").submit(function(event) {
+        event.preventDefault();
+        //call update API here
+        document.getElementById('authentication-modal').style.display = "none";
+
+        let id = $("#postid").val();
+        $.ajax({
+            type: "PUT",
+            url: "https://jsonplaceholder.typicode.com/posts/" + id,
+            data: {
+                title: $("#title").val(),
+                body: $("#body").val()
+            },
+            beforeSend: function() {
+                // $('.loading').show();
+            },
+            success: function(data) {
+                console.log(data.title)
+                    // $('.loading').hide();
+                document.getElementById("posttitle" + id).innerHTML = data.title
+                document.getElementById("postbody" + id).innerHTML = data.body
 
             }
         })
