@@ -135,13 +135,6 @@
       </div>
     </nav>
 
- <!-- Modal toggle -->
-<button class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-modal-toggle="authentication-modal">
-  Toggle modal
-</button>
-
-
-
         <div class="bg-white">
             <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
                 <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">
@@ -173,27 +166,17 @@
                       <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Body</label>
                       <input type="text" name="body" id="body" placeholder="Enter Body" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                   </div>
-                  <div class="flex justify-between">
-                      <div class="flex items-start">
-                          <div class="flex items-center h-5">
-                              <input id="remember" type="checkbox" value="" class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required>
-                          </div>
-                          <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
-                      </div>
-                      <a href="#" class="text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</a>
-                    </div>
+                 
                     <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
-                    <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-                        Not registered? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500">Create account</a>
+                       <a></a>
+                                </form>
                     </div>
-                    </form>
                 </div>
-        </div>
         </div>
         </div>
 
 </body>
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
 <script>
@@ -207,7 +190,6 @@
 
 <script>
     $(window).on("load", function() {
-        console.log("ok");
         // Ajax Function to send a get request
         $.ajax({
             type: "GET",
@@ -223,20 +205,14 @@
                 <img src="https://picsum.photos/id/` + res.id + `/300/300" alt="Olive drab green insulated bottle with flared screw lid and flat top." class="w-full h-full object-center object-cover group-hover:opacity-75">
             </div>
             <h3 class="mt-4 text-sm text-gray-700 text-bold font-semibold">` + res.title + `</h3> 
-                                <p class="mt-1 text-lg font-medium text-gray-900"> Rs. ` + Math.floor((Math.random() * 1000) + 100) + `</p>
+                <p class="mt-1 text-lg font-medium text-gray-900"> Rs. ` + Math.floor((Math.random() * 1000) + 100) + `</p>
             </a> `);
                 });
             },
         });
     }); // $(document).ready(function() { // console.log("ready!"); // });
 
-
-
-
-
-
-
-    // edit Personal Attribute
+    // edit Modal for every Item
     $('#posts').on('click', '.edit', function() {
         let id = $(this).data('id');
         $.ajax({
@@ -264,6 +240,13 @@
     function closeModal() {
         document.getElementById('authentication-modal').style.display = "none";
     }
+
+    //On clicking ESC Key on keyboard close modal
+    $(document).keydown(function(event) {
+        if (event.keyCode == 27) {
+            $('#authentication-modal').hide();
+        }
+    });
 </script>
 
 </html>
